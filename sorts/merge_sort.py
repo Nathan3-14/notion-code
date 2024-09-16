@@ -40,7 +40,6 @@ def merge_sort(_unordered_list, first: bool=False):
         _list_new.append(to_add)
 
     if len(_list_new) == 1:
-        print("Done!")
         return _list_new[0]
     else:
         return merge_sort(_list_new)
