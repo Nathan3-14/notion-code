@@ -5,7 +5,7 @@ def insertion_sort(_unordered_list):
         new_list.pop(item_index)
         target_index = 0
         if item_index != 0:
-            for compare_index in range(item_index-1):
+            for compare_index in range(item_index):
                 if current_comparison >= new_list[compare_index]:
                     target_index = compare_index + 1
                     print(f"{current_comparison} >= {new_list[compare_index]}, setting target to {target_index}")
@@ -16,7 +16,7 @@ def insertion_sort(_unordered_list):
 
         new_list.insert(target_index, current_comparison)
                 
-        print(new_list)
+        print(f"{new_list}\n")
 
 
 if __name__ == "__main__":
