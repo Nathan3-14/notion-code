@@ -8,16 +8,15 @@ def insertion_sort(_unordered_list):
             for compare_index in range(item_index):
                 if current_comparison >= new_list[compare_index]:
                     target_index = compare_index + 1
-                    print(f"{current_comparison} >= {new_list[compare_index]}, setting target to {target_index}")
-                else:
-                    print(f"{current_comparison} not >= {new_list[compare_index]}")
-        else:
-            print("skipped")
+                #     print(f"{current_comparison} >= {new_list[compare_index]}, setting target to {target_index}")
+                # else:
+                #     print(f"{current_comparison} not >= {new_list[compare_index]}")
 
         new_list.insert(target_index, current_comparison)
                 
-        print(f"{new_list}\n")
+        # print(f"{new_list}\n")
+    return new_list
 
 
 if __name__ == "__main__":
-    insertion_sort([1, 2, 7, 4, 3])
+    print(insertion_sort([1, 2, 7, 4, 3]))
