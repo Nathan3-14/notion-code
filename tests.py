@@ -13,19 +13,19 @@ def time_stamp(message: str=""):
     else:
         end = datetime.datetime.now()
         time_delta = end - start
-        print(f"{message} Took {time_delta.microseconds / 1000} milliseconds")
+        print(f"{message} Took {time_delta.seconds * 1000} milliseconds")
         start = None
 
 #* List Setup *#
-ordered_list = list(range(1, 101))
+ordered_list = list(range(1, 1001))
 unordered_list = ordered_list.copy()
 random.shuffle(unordered_list)
 
 #* Run Searches *#
-linear_search(unordered_list, 57)
-binary_search(ordered_list, 57)
-linear_search(unordered_list, 107)
-binary_search(ordered_list, 107)
+linear_search(unordered_list, 507)
+binary_search(ordered_list, 507)
+linear_search(unordered_list, 1007)
+binary_search(ordered_list, 1007)
 
 #* Run Sorts *#
 time_stamp()
