@@ -8,6 +8,7 @@ start = None
 def time_stamp(message: str=""):
     global start
     if start == None:
+        print("")
         start = datetime.datetime.now()
     else:
         end = datetime.datetime.now()
