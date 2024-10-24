@@ -1,10 +1,6 @@
 from typing import Dict, List, Tuple
 from random import shuffle
 
-class Game:
-    def __init__(self, deck: "Deck") -> None:
-        self.deck = deck
-
 class Deck:
     def __init__(self, suits: str="SCHD", num_range: Tuple[int, int]=(2, 10), letters: str="A...JQK", debug: bool=False) -> None:
         self.debug = debug
@@ -18,6 +14,11 @@ class Deck:
 
     def shuffle(self) -> None:
         shuffle(self.cards)
+
+    def draw(self) -> str:
+        card = self.cards[0]
+        self.cards.pop(0)
+        return card
     
     def display(self) -> None:
         for index, card in enumerate(self.cards):
