@@ -1,7 +1,7 @@
 from random import choice
 
 
-def fancy_input(message: str, type=str) -> type:
+def fancy_input(message: str, type=str, options:List[type]=[]) -> type:
     pass
 
 
