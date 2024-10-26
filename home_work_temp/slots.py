@@ -1,6 +1,10 @@
 from random import choice
 from typing import Any, Generic, TypeVar, List, Type, Callable
 
+
+erase_line = "\033[F\033[K"
+slot_ascii = ""
+
 def true() -> bool:
     return True
 
@@ -58,7 +62,6 @@ if __name__ == "__main__":
     while money > 0:
         if input("go? (y/n)").lower() == "n":
             break
-        bet_on = fancy_input("What bet on? (red/black)", str, ["red", "black"])
-
+        
 
     print("PLAY AGAIN!")
