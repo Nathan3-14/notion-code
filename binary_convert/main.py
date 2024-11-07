@@ -57,6 +57,7 @@ def hex_to_binary(_hex: str) -> str:
     to_return = ""
     for char in _hex:
         to_return += denary_to_binary(hex_to_denary(char))
+    return to_return
 
 def hex_to_denary(_hex: str) -> int:
     hex_list = [char for char in _hex]
@@ -80,10 +81,14 @@ def hex_to_denary(_hex: str) -> int:
             case _:
                 num = int(char)
         to_return += num * 16 ** index
-    print(to_return)
+    return to_return
 
 if __name__ == "__main__":
-    print(binary_to_denary("1011"))
-    print(denary_to_binary(11))
-    print(binary_to_hex("101001"))
-    print(hex_to_denary("12A"))
+    print(f"1011   -> denary = {binary_to_denary("1011")}")
+    print(f"11     -> binary = {denary_to_binary(11)}")
+    print("")
+    print(f"101001 -> hex    = {binary_to_hex("101001")}")
+    print(f"29     -> binary = {hex_to_binary("29")}")
+    print("")
+    print(f"35     -> hex    = {denary_to_hex(35)}")
+    print(f"23     -> denary = {hex_to_denary("23")}")
