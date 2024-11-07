@@ -34,7 +34,7 @@ def binary_to_hex(binary: str) -> str:
     for i in range(binary_lenth):
         current = binary[0+4*i:4+4*i]
         # print(f"  {current}")
-        to_return.append(hex_lookup[current])
+        to_return.append(hex_binary_lookup[current])
     return "".join(to_return)
 
 
@@ -54,19 +54,36 @@ def denary_to_hex(denary: int) -> str:
     return binary_to_hex(denary_to_binary(denary))
 
 def hex_to_binary(_hex: str) -> str:
+    to_return = ""
     for char in _hex:
-        
+        to_return += denary_to_binary(hex_to_denary(char))
 
-denary_hex_lookup = {
-    "A": 
-}
 def hex_to_denary(_hex: str) -> int:
-    to_return = []
-    for char in _hex:
-
+    hex_list = [char for char in _hex]
+    hex_list.reverse() #? Used to get indexing correct (for place)
+    to_return = 0
+    for index, char in enumerate(hex_list):
+        num = 0
+        match char:
+            case "A":
+                num = 10
+            case "B":
+                num = 11
+            case "C":
+                num = 12
+            case "D":
+                num = 13
+            case "E":
+                num = 14
+            case "F":
+                num = 15
+            case _:
+                num = int(char)
+        to_return += num * 16 ** index
+    print(to_return)
 
 if __name__ == "__main__":
     print(binary_to_denary("1011"))
     print(denary_to_binary(11))
     print(binary_to_hex("101001"))
-    print(hex_to_binary("29"))
+    print(hex_to_denary("12A"))
