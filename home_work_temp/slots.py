@@ -87,7 +87,7 @@ if __name__ == "__main__":
             time.sleep(0.1)
 
         if roll_1 == roll_2 and roll_2 == roll_3: #type:ignore
-            win_amount = roll_1 * 2 #type:ignore
+            win_amount = int(roll_1) * 2 #type:ignore
             print(f"WINNER! Won £{win_amount}!")
             money += win_amount
     
