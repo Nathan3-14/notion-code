@@ -1,20 +1,17 @@
-# game
-# import os
 import json
 from typing import Any, Dict, List
 
 import rich
 
-def printjson(data: Dict[Any, Any]) -> None:
+def printjson(data: Dict[Any, Any] | List[Any]) -> None:
     rich.print_json(json.dumps(data))
 
 
 class SaveData:
     def __init__(self, file_name: str) -> None:
-        pass
-        # self.data = self.read_file(file_name)
+        self.data = self.read_file(file_name)
 
-    def read_file(self, file_name: str) -> List[str]:
+    def read_file(self, file_name: str) -> Dict[str, Dict[str, Any]]:
         with open(file_name, "r") as f:
             data = f.readlines()
 
@@ -48,32 +45,25 @@ class SaveData:
                     [line_index]
                 ] = line_split[name_index]
         
-        printjson(self.data)
+        # printjson(self.data)
         return self.data
     
     def write_file(self, file_name: str) -> None:
         names = list(self.data.keys())
         variables = list(self.data[names[0]].keys()).copy()
         lines = ["," + ",".join(names) + "." + ".".join(variables)]
+        
+        for variable in variables:
+            lines.append(",".join([str(_data[variable]) for _data in list(self.data.values())]))
 
-        printjson(lines)
+        lines = [f"{line}\n" for line in lines]
+        
+        # printjson(lines)
+        
+        with open(file_name, "w") as f:
+            f.writelines(lines)
 
     
 
 data = SaveData("save.txt")
-# data.read_file("save.txt")
-data.data = {
-    "a": {
-        "x": 1,
-        "y": 2
-    },
-    "b": {
-        "x": 3,
-        "y": 0
-    },
-    "c": {
-        "x": 10,
-        "y": 20
-    }
-}
 data.write_file("testsave.txt")
