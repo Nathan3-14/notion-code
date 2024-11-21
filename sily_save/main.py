@@ -12,6 +12,7 @@ def printjson(data: Dict[Any, Any]) -> None:
 class SaveData:
     def __init__(self, file_name: str) -> None:
         pass
+        # self.data = self.read_file(file_name)
 
     def read_file(self, file_name: str) -> List[str]:
         with open(file_name, "r") as f:
@@ -48,8 +49,31 @@ class SaveData:
                 ] = line_split[name_index]
         
         printjson(self.data)
-        return [] #! ONLY USED AS A TEMP !#
+        return self.data
+    
+    def write_file(self, file_name: str) -> None:
+        names = list(self.data.keys())
+        variables = list(self.data[names[0]].keys()).copy()
+        lines = ["," + ",".join(names) + "." + ".".join(variables)]
+
+        printjson(lines)
+
     
 
 data = SaveData("save.txt")
-data.read_file("save.txt")
+# data.read_file("save.txt")
+data.data = {
+    "a": {
+        "x": 1,
+        "y": 2
+    },
+    "b": {
+        "x": 3,
+        "y": 0
+    },
+    "c": {
+        "x": 10,
+        "y": 20
+    }
+}
+data.write_file("testsave.txt")
