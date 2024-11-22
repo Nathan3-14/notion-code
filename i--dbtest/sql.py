@@ -1,5 +1,6 @@
 import sqlite3 as sq3
 from sys import argv
+from typing import Any, List
 
 class Main:
     def __init__(self, file_address: str) -> None:
@@ -11,7 +12,13 @@ class Main:
             _input = ""
             while _input not in ["quit", "exit", "end"]:
                 _input = input(">> ")
-                self.cursor.execute(_input)
+                output: List[Any] | str = ""
+                try:
+                    output = self.cursor.execute(_input).fetchall()
+                except Exception:
+                    pass
+                    # print(e)
+                print(output)
         except Exception as e:
             print(e)
             return -1
@@ -40,6 +47,6 @@ if __name__ == "__main__":
         print(f"Invalid run code, requires one of ({', '.join(list(commands.keys()))}) to run")
         quit()
     
-    main.commands[args[0]](args[1:])
+    commands[args[0]](args[1:])
 
 # cursor.execute("CREATE TABLE orders (OrderId INT, CustomerId INT, DateShipped DATE)")
