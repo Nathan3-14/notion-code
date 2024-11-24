@@ -8,7 +8,7 @@ class Main:
         self.cursor = self.connection.cursor()
         # self.cursor.
 
-    def console(self, *args) -> int:
+    def console(self, args) -> int:
         try:
             _input = ""
             while True:
