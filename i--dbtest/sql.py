@@ -6,15 +6,19 @@ class Main:
     def __init__(self, file_address: str) -> None:
         self.connection = sq3.connect(file_address)
         self.cursor = self.connection.cursor()
+        # self.cursor.
 
     def console(self, *args) -> int:
         try:
             _input = ""
-            while _input not in ["quit", "exit", "end"]:
+            while True:
                 _input = input(">> ")
+                if _input.lower() in ["quit", "exit", "end"]:
+                    break
                 output: List[Any] | str = ""
                 try:
-                    output = self.cursor.execute(_input).fetchall()
+                    self.cursor.execute(_input)
+                    output = self.cursor.fetchall()
                 except Exception:
                     pass
                     # print(e)
@@ -46,7 +50,9 @@ if __name__ == "__main__":
     if not len(args) >= 1:
         print(f"Invalid run code, requires one of ({', '.join(list(commands.keys()))}) to run")
         quit()
-    
-    commands[args[0]](args[1:])
+    try:
+        commands[args[0]](args[1:])
+    finally:
+        main.connection.close()
 
 # cursor.execute("CREATE TABLE orders (OrderId INT, CustomerId INT, DateShipped DATE)")
