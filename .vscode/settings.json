@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "ShopsDB",
+            "database": "${workspaceFolder:notion-code}/i--dbtest/shop.db"
+        }
+    ]
+}

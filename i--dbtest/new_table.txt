@@ -1,0 +1,4 @@
+customers
+CustomerID,NAME,Address
+INT,VARCHAR(40),DATE
+AUTO_INCREMENT.PRIMARY KEY,,
