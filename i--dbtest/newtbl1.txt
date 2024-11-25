@@ -1,4 +1,0 @@
-colours
-ColourID,ColourName,ColourHexCode
-INT,VARCHAR(15),VARCHAR(6)
-AUTO_INCREMENT.PRIMARY KEY,,

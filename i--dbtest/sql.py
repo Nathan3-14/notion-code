@@ -42,32 +42,32 @@ class Main:
 
         return 0
 
-    def create_table(self, args) -> int:
-        if len(args) != 1:
-            print("BAD args :(")
-            return -1
-        file_path = args[0]
-        try:
-            with open(file_path, "r") as f:
-                data = f.readlines()
-            table_name = data[0]
-            table_keys = data[1].split(",")
-            table_types = data[2].split(",")
-            table_extras = [extra_list.split(".") for extra_list in data[3].split(",")]
+    # def create_table(self, args) -> int:
+    #     if len(args) != 1:
+    #         print("BAD args :(")
+    #         return -1
+    #     file_path = args[0]
+    #     try:
+    #         with open(file_path, "r") as f:
+    #             data = f.readlines()
+    #         table_name = data[0]
+    #         table_keys = data[1].split(",")
+    #         table_types = data[2].split(",")
+    #         table_extras = [extra_list.split(".") for extra_list in data[3].split(",")]
 
-            temp_var_name = [
-                f"{table_keys[index]} {table_types[index]} {' '.join(table_extras[index])},"
-                for index in range(len(table_keys))
-            ]
+    #         temp_var_name = [
+    #             f"{table_keys[index]} {table_types[index]} {' '.join(table_extras[index])},"
+    #             for index in range(len(table_keys))
+    #         ]
 
-            command = f"CREATE TABLE {table_name} ( {''.join(temp_var_name).strip(',')} );"
-            print(command)
-            self.cursor.execute(command)
+    #         command = f"CREATE TABLE {table_name} ( {''.join(temp_var_name).strip(',')} );"
+    #         print(command)
+    #         self.cursor.execute(command)
             
-        except Exception as e:
-            print(e)
-            return -1
-        return 0
+    #     except Exception as e:
+    #         print(e)
+    #         return -1
+    #     return 0
     
 
 if __name__ == "__main__":
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     commands = {
         "console": main.console,
         "list": main.display,
-        "create": main.create_table
+        # "create": main.create_table
     }
 
     if not len(args) >= 1:

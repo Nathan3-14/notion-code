@@ -1,4 +1,0 @@
-shapes
-ShapeName,ColourID
-VARCHAR(15),INT
-PRIMARY KEY,
