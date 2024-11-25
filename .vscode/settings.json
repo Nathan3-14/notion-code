@@ -3,7 +3,7 @@
         {
             "previewLimit": 50,
             "driver": "SQLite",
-            "name": "ShopsDB",
+            "name": "Shop Database",
             "database": "${workspaceFolder:notion-code}/i--dbtest/shop.db"
         }
     ]

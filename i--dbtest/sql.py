@@ -1,6 +1,7 @@
 import sqlite3 as sq3
 from sys import argv
-from typing import Any, List
+from typing import Any, Dict, List
+from sql_print import print_table
 
 class Main:
     def __init__(self, file_address: str) -> None:
@@ -29,13 +30,42 @@ class Main:
         return 0
     
     def display(self, args) -> int:
-        if len(args) != 1:
+        if len(args) < 1:
             print("BAD args :(")
             return -1
-        database_name = args[0]
+        database_names = args
+        database_names_columns: Dict[str, List[str]] = {}
         try:
-            self.cursor.execute(f"SELECT * FROM {database_name}")
-            print(self.cursor.fetchall())
+            for index, database_name in enumerate(database_names):
+                self.cursor.execute(f"SELECT * FROM {database_name}")
+                database_names_columns[database_name] = [description[0] for description in self.cursor.description]
+            
+            
+            select_text = ", ".join([
+                ", ".join([f"{name}.{key}" for key in data])
+                for name, data in database_names_columns.items()
+            ])
+            
+            shared_key = None
+            if len(database_names) > 1:
+                for key in database_names_columns[database_names[0]]:
+                    if key in database_names_columns[database_names[1]]:
+                        shared_key = key
+            if shared_key == None and len(database_names) > 1:
+                print("No shared key :(")
+                return -1
+            
+            self.cursor.execute(f"""
+                                SELECT {select_text}
+                                FROM {database_names[0]}
+                                    {f'''INNER JOIN {database_names[1]}
+                                        ON {database_names[0]}.{shared_key} = {database_names[1]}.{shared_key}''' if len(database_names) > 1 else ''}
+                                """)
+            data = self.cursor.fetchall()
+            
+            database_columns = [description[0] for description in self.cursor.description]
+            print_table(", ".join(database_names), database_columns, data)
+            
         except Exception as e:
             print(e)
             return -1
@@ -71,7 +101,7 @@ class Main:
     
 
 if __name__ == "__main__":
-    main = Main("./test.sql")
+    main = Main("shop.db")
     args = argv[1:]
     commands = {
         "console": main.console,

@@ -1,0 +1,36 @@
+CREATE TABLE customers (
+    CustomerID INT,
+    CustomerName VARCHAR(30),
+    CustomerAddress VARCHAR(50),
+    PRIMARY KEY(CustomerID)
+)
+INSERT INTO customers VALUES (1,"Alice Apple","1 Main Rd")
+INSERT INTO customers VALUES (2,"Bob Bradsworth","2 Main Rd")
+INSERT INTO customers VALUES (3,"Catherine Carolson","5 Main Rd")
+INSERT INTO customers VALUES (4,"David Daylesbury","21 Second Rd")
+INSERT INTO customers VALUES (5,"Ellis Enbury","5 Third Rd")
+
+CREATE TABLE orders (
+    OrderID INT,
+    CustomerID INT,
+    OrderDate DATE,
+    PRIMARY KEY(OrderID)
+)
+INSERT INTO orders VALUES (1,1,"21-11-2024")
+INSERT INTO orders VALUES (2,2,"23-11-2024")
+INSERT INTO orders VALUES (3,3,"23-11-2024")
+INSERT INTO orders VALUES (4,4,"24-11-2024")
+INSERT INTO orders VALUES (5,5"30-11-2024")
+INSERT INTO orders VALUES (6,2"30-11-2024")
+INSERT INTO orders VALUES (7,3"01-12-2024")
+
+CREATE TABLE shippers (
+    ShipperID INT,
+    ShipperName VARCHAR(20),
+    PRIMARY KEY(ShipperID)
+)
+INSERT INTO shippers VALUES (1,"Royal Mail")
+INSERT INTO shippers VALUES (2,"Fedex")
+INSERT INTO shippers VALUES (3,"DHL")
+INSERT INTO shippers VALUES (4,"DPD")
+INSERT INTO shippers VALUES (5,"International")
