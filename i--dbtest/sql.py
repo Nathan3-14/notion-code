@@ -55,10 +55,12 @@ class Main:
             table_types = data[2].split(",")
             table_extras = [extra_list.split(".") for extra_list in data[3].split(",")]
 
-            command = f"CREATE TABLE {table_name} ( {''.join([
-                f'{table_keys[index]} {table_types[index]} {' '.join(table_extras[index])},'
+            temp_var_name = [
+                f"{table_keys[index]} {table_types[index]} {' '.join(table_extras[index])},"
                 for index in range(len(table_keys))
-            ]).strip(',')} );"
+            ]
+
+            command = f"CREATE TABLE {table_name} ( {''.join(temp_var_name).strip(',')} );"
             print(command)
             self.cursor.execute(command)
             
@@ -69,7 +71,7 @@ class Main:
     
 
 if __name__ == "__main__":
-    main = Main("./shop.db")
+    main = Main("./test.sql")
     args = argv[1:]
     commands = {
         "console": main.console,
@@ -85,4 +87,3 @@ if __name__ == "__main__":
     finally:
         main.connection.close()
 
-# cursor.execute("CREATE TABLE orders (OrderId INT, CustomerId INT, DateShipped DATE)")

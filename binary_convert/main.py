@@ -32,7 +32,7 @@ def binary_to_hex(binary: str) -> str:
     to_return = []
     
     for i in range(binary_lenth):
-        current = binary[0+4*i:4+4*i]
+        current = binary[0+4*i:4+4*
         # print(f"  {current}")
         to_return.append(hex_binary_lookup[current])
     return "".join(to_return)
