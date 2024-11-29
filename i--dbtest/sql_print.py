@@ -1,8 +1,10 @@
+import sqlite3 as sq3
 from typing import Any, List
 from rich.console import Console
 from rich.table import Table
+import rich
 
-def print_table(table_name: str, columns: List[Any], rows: List[Any]) -> None:
+def get_table(table_name: str, columns: List[Any], rows: List[Any]) -> Table:
     table = Table(title=table_name)
     
     for column_name in columns:
@@ -11,11 +13,22 @@ def print_table(table_name: str, columns: List[Any], rows: List[Any]) -> None:
         row_data_str = [str(row_item) for row_item in row_data]
         table.add_row(*row_data_str)
 
-    console = Console()
-    console.print("\n")
-    console.print(table)
-    console.print("\n")
+    return table
+
+
+
+def get_select_table(select_statement: str, cursor: sq3.Cursor) -> Table:
+    data = cursor.execute(select_statement).fetchall()
+    column_names = [description[0] for description in cursor.description]
+
+    return get_table(select_statement, column_names, data)
+
+def print_select(select_statement: str, cursor: sq3.Cursor) -> None:
+    rich.print(get_select_table(select_statement, cursor))
+
 
 
 if __name__ == "__main__":
-    print_table("Test", ["number", "string", "another number"], [(1, 1, '21-11-2024'), (2, 2, '23-11-2024'), (3, 3, '23-11-2024'), (4, 4, '24-11-2024'), (5, 5, '25-11-2024'), (6, 2, '30-11-2024'), (7, 3, '01-12-2024')])
+    conn = sq3.connect("shop.db")
+    print_select("select * from customers inner join orders on orders.CustomerID=customers.CustomerID", conn.cursor())
+    conn.close()
