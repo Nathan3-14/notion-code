@@ -4,7 +4,15 @@ import os
 
 
 if os.path.exists("launch.log"):
-    pass
+    with open("launch.log") as f:
+        data = f.readlines()
+    try:
+        atk_type = data[0].split(" ")[0]
+        location = data[0].split(" ")[-1]
+        user = data[1].split(" ")[-1]
+        print(f"Log: {user} fired {atk_type} at {location}")
+    except IndexError:
+        pass
 
 
 users = {
