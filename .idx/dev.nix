@@ -10,7 +10,6 @@
     pkgs.python311
     pkgs.python311Packages.pip
     pkgs.gcc
-    pkgs.python311Packages.rich
     # pkgs.nodejs_20
     # pkgs.nodePackages.nodemon
   ];
