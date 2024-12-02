@@ -15,7 +15,6 @@ message = MIMEMultipart("alternative")
 message["Subject"] = "Cat?"
 message["From"] = sent_from
 message["To"] = sent_to
-124
 with open("email.html", "r") as f:
     html = f.read()
 
