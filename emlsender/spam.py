@@ -8,7 +8,7 @@ gmail_user = usrpass[0].strip()
 gmail_app_password = usrpass[1].strip()
 
 sent_from = gmail_user
-+sent_to = "ethan.denton@oasisbrislington.org"
+sent_to = "ethan.denton@oasisbrislington.org"
 # sent_to = "nathan.watson@oasisbrislington.org"
 
 message = MIMEMultipart("alternative")
